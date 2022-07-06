@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Primeira API</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #161616;
+      }
+
+      h1 {
+        color: rgba(0, 212, 255, 1);
+      }
+
+      .btn {
+        width: 150px;
+        height: 50px;
+        margin: 10px;
+
+        font-size: 2rem;
+      }
+
+      .btn:hover {
+        width: 180px;
+        height: 70px;
+        margin: 2px;
+
+        background-color: #8a2be2;
+      }
+      input {
+        width: 400px;
+        height: 30px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Primeira API com NodeJS</h1>
+    <input type="button" class="btn" value="POST" onclick="fazPost()" />
+    <input type="button" class="btn" value="GET" onclick="fazGet()" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <script>
+      function fazPost() {
+        axios
+          .post("http://localhost:3000/clients", {
+            id: "John",
+            title: "Doe",
+          })
+          .then(function (response) {
+            console.log("Adicionado!");
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      function fazGet() {
+        axios
+          .get("http://localhost:3000/clients")
+          .then((response) => console.log(response.data))
+          .catch((error) => console.log(error));
+      }
+    </script>
+  </body>
+</html>
